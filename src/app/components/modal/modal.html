@@ -1,0 +1,9 @@
+<div class="fixed inset-0 bg-black/50 flex justify-center items-center z-20">
+    <div class="bg-white rounded-default p-default">
+        <ng-content></ng-content>
+        <div class="flex flex-wrap gap-2 justify-center m-5">
+            <button (click)="onCerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer">Cancelar</button>
+            <button (click)="onCerrarModal()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<p class="titulo">Entrenadores por Deporte</p>
+
+<div class="flex flex-wrap py-2">
+    @for (deporte of deportes; track deporte) {
+        <app-ficha  (seleccionado)="seleccionar($event)" [texto]="deporte.nombre" [seleccionActual]="deporteSeleccionado.nombre"></app-ficha>
+    }
+</div>
+<hr class="border-2 text-secundario">
+
+<app-contenido-entrenador [deporte]="deporteSeleccionado"></app-contenido-entrenador>

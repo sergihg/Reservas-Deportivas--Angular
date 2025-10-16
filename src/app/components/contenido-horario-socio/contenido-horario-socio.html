@@ -1,0 +1,51 @@
+@if (horario().hora !== '')
+{
+    <div class="border p-5 rounded-default my-4">
+        <div class="grid grid-cols-3 relative">
+            <button href='' class="text-white bg-red-700 w-fit absolute right-0 mx-3 text-sm p-2 rounded font-bold" (click)="abrirModal()">
+                - dar de baja horario
+            </button>
+            <div class="col text-2xl font-semibold">Deporte</div>
+            <div class="col text-2xl font-semibold">Hora</div>
+            <div class="col text-2xl font-semibold">Entrenador</div>
+        
+            <div class="col">{{ deporte().nombre }}</div>
+            <div class="col">{{ horario().hora }}</div>
+            <div class="col">Nombre del entrenador</div>
+        </div>
+
+        <div class="my-5">
+            <p class="text-2xl">Días del horario</p>
+            <app-calendario-semanal [dias]="horario().dias"></app-calendario-semanal>
+        </div>
+        <div class="flex justify-end">
+            <a class="hover:bg-principal/25 rounded-default p-2 cursor-pointer">
+                Ver calendario completo
+            </a>
+        </div>
+
+        <div class="col-span-2">
+            <p>Eventos agendados</p>
+                <table>
+                    @for (evento of eventos(); track evento) {
+                        <tr class="border-b-2 border-main-color">
+                            <td class = "border-r border-principal/80">{{evento.fecha}}</td>
+                            <td>{{evento.titulo}}</td>
+                            <!-- <td>
+                                <a href="{{ route('entrenador.notificar',$evento->id) }}" class="rounded bg-main-color/50">Enviar recordatorio</a>
+                            </td> -->
+                        </tr>
+                    } @empty {
+                        <p class="text-principal/50">No hay eventos agendados aún</p>
+                    }
+                </table>
+            
+        </div>
+    </div>
+    @if (modal)
+    {
+        <app-modal (cerrarModal)="cerrarModal()">
+            ¿Seguro que quieres dar de baja este horario?
+        </app-modal>
+    }
+}

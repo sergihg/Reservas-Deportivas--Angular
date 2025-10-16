@@ -1,0 +1,40 @@
+<div class="grid grid-cols-5 text-center">
+    <!-- dias de la semana -->
+    <div class="dia border-2 p-1 bg-principal/10">Martes</div>
+    <div class="dia border-2 p-1 bg-principal/10">Miércoles</div>
+    <div class="dia border-2 p-1 bg-principal/10">Jueves</div>
+    <div class="dia border-2 p-1 bg-principal/10">Viernes</div>
+    <div class="dia border-2 p-1 bg-principal/10">Sábado</div>
+
+    <!-- revisar si hay deporte ese dia -->
+    <div class="celda border-2 p-1 min-h-8">
+        @if (dias().includes(1))
+        {
+            <p class="bg-secundario">dia de deporte</p>
+        }
+    </div>
+    <div class="celda border-2 p-1 min-h-8">
+        @if (dias().includes(2))
+        {
+            <p class="bg-secundario">dia de deporte</p>
+        }
+    </div>
+    <div class="celda border-2 p-1 min-h-8">
+        @if (dias().includes(3))
+        {
+            <p class="bg-secundario">dia de deporte</p>
+        }
+    </div>
+    <div class="celda border-2 p-1 min-h-8">
+        @if (dias().includes(4))
+        {
+            <p class="bg-secundario">dia de deporte</p>
+        }
+    </div>
+    <div class="celda border-2 p-1 min-h-8">
+        @if (dias().includes(5))
+        {
+            <p class="bg-secundario">dia de deporte</p>
+        }
+    </div>
+</div>

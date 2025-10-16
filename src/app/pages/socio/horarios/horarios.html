@@ -1,0 +1,10 @@
+<p class="titulo">Mis Horario Inscritos</p>
+<!-- 
+<div class="flex flex-wrap py-2">
+    @for (horario of horarios; track horario) {
+        <app-ficha  (seleccionado)="seleccionar($event)" [texto]="horario" [seleccionActual]="horarioSeleccionado"></app-ficha>
+    }
+</div> -->
+<hr class="border-2 text-secundario">
+
+<app-inscripciones-socio [deportes]="deportes" [horarios]="horarios"></app-inscripciones-socio>

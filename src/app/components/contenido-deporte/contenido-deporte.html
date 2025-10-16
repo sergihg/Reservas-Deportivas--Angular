@@ -1,0 +1,38 @@
+@if (deporte().nombre !== '')
+{
+    <div class="w-vw border p-5 rounded-default my-4">
+        <p class="text-subtitulo">Descripción del deporte: {{deporte().nombre}}</p>
+        <p>
+            El atletismo es uno de los deportes más antiguos que existen y es uno de más completos, ya que activa el metabolismo al ser una actividad cardiovascular. Previene algunas enfermedades  szzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzddddddddddddddcomo la obesidad y la diabetes, así como mejorar la coordinación y fortaleza mental, una habilidad elemental sobre todo en las pruebas de alto rendimiento. <br>
+        Con profesores altamente calificados, contarás con un entrenamiento guiado que te ayudará a ir mejorando paso a paso la técnica, tus tiempos y evitar lesiones.
+        </p>
+
+        @if (socio())
+        {
+            <p class="text-subtitulo mt-5"> Horarios del deporte</p>
+
+            <div class="grid grid-cols-3">
+                @for (horario of horarios; track horario)
+                {
+                    <p>{{horario.hora}}</p>
+                    <p>Nombre de entrenador</p>
+                    <div class="flex flex-wrap justify-between p-0.5">
+                        <p>{{horario.inscritos}}/{{horario.cupos}}</p>
+                        <button class="cursor-pointer bg-principal hover:bg-principal/50 rounded text-white p-2" (click)="abrirModal()">
+                                Inscribirse al deporte
+                        </button>
+                    </div>
+                } @empty {
+                    <p class="col-span-3 text-center text-2xl text-principal/50 py-5">Todavía no hay entrenadores para esta academia</p>
+                }
+            </div>
+            
+            @if (modal)
+            {
+                <app-modal (cerrarModal)="cerrarModal()">
+                    ¿Seguro que quieres inscribir este horario?
+                </app-modal>
+            }
+        }
+    </div>
+}

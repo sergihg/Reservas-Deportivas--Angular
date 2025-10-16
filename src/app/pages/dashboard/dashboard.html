@@ -1,0 +1,16 @@
+<p class="titulo">Últimos anuncios</p>
+
+<p class="text-subtitulo">Deportes hoy</p>
+<ul>
+    @for (hora of horarios; track hora)
+    {
+        <li>{{hora}} - Nombre del deporte</li>
+    }
+</ul>
+<p class="text-subtitulo">Eventos proximos</p>
+<ul>
+    @for (evento of eventos; track evento)
+    {
+        <li>{{evento.fecha}} - {{evento.titulo}}</li>
+    }
+</ul>

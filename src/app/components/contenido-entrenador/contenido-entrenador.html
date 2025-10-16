@@ -1,0 +1,22 @@
+@if (deporte().nombre !== '')
+{
+    <div class="w-vw border p-5 rounded-default my-4">
+        <p class="text-subtitulo">Entrenadores de {{deporte().nombre}}</p>
+
+            @for (entrenador of entrenadores(); track entrenador)
+            {
+                <div class="flex justify-between w-full border rounded-default p-default my-2">
+                    <p>{{entrenador.nombre}}</p>
+                    <a href="socio/horarios" class="cursor-pointer bg-principal hover:bg-principal/50 rounded-default text-white p-2">
+                            Editar datos del entrenador
+                    </a>
+                </div>
+            } @empty {
+                <p class="text-center text-2xl text-principal/50 py-5">Todavía no hay entrenadores para esta académia</p>
+            }
+        <div class="flex my-2"
+            [ngClass]="entrenadores().length>0 ? '' : 'justify-center'">
+                <button class="bg-principal p-2 rounded-default text-white">Añadir entrenador</button>
+        </div>
+    </div>
+}

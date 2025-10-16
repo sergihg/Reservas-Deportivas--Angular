@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+.icono {
+    width: 20px !important;
+    height: 20px !important;
+}
+.logo {
+    width: 52px;
+    height: 52px;
+}
+.contenido {
+    padding: var(--spacing-contenido);
+    display: flex;
+    justify-content: center;
+    color: var(--color-principal);
+}
+.titulo {
+    font-size: var(--text-titulo);
+    justify-content: center;
+    display: flex;
+}
+td {
+    height: fit-content;
+    padding: 10px;
+}
+
+@theme {
+    --color-principal: #203C73;
+    --color-secundario: #EBA740;
+    --color-acentos: #9D8D6B;
+
+    --spacing-default: 10px;
+    --radius-default: 10px;
+
+    --spacing-contenido: 70px;
+
+    --text-titulo: 36px;
+    --text-subtitulo: 24px;
+
+}
