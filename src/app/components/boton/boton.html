@@ -1,4 +1,6 @@
-<a href={{direccion()}} class="flex align-middle hover:bg-white/10 p-default rounded-default gap-default w-fit">
-    <div class="icono bg-white"></div>
-    <ng-content/>
-</a>
+<div class="h-full pb-2" routerLinkActive="border-b-2">
+    <a routerLink={{direccion()}} class="flex align-middle hover:bg-white/10 p-default rounded-default gap-default w-full h-full" routerLinkActive="bg-white/10">
+        <div class="icono bg-white"></div>
+        <ng-content/>
+    </a>
+</div>

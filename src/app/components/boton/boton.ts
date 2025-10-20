@@ -1,9 +1,9 @@
 import { Component, input, inject, Input } from '@angular/core';
-import { RouterModule, RouterLink } from '@angular/router';
+import { RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-boton',
-  imports: [ ],
+  imports: [ RouterLink, RouterLinkActive ],
   templateUrl: './boton.html',
   styleUrl: './boton.css'
 })
