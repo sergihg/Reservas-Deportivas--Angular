@@ -7,16 +7,33 @@
             {
                 <div class="flex justify-between w-full border rounded-default p-default my-2">
                     <p>{{entrenador.nombre}}</p>
-                    <a href="socio/horarios" class="cursor-pointer bg-principal hover:bg-principal/50 rounded-default text-white p-2">
+                    <button class="cursor-pointer bg-principal hover:bg-principal/50 rounded-default text-white p-2" (click)="abrirModal('editar')">
                             Editar datos del entrenador
-                    </a>
+                    </button>
                 </div>
             } @empty {
                 <p class="text-center text-2xl text-principal/50 py-5">Todavía no hay entrenadores para esta académia</p>
             }
         <div class="flex my-2"
             [ngClass]="entrenadores().length>0 ? '' : 'justify-center'">
-                <button class="bg-principal p-2 rounded-default text-white">Añadir entrenador</button>
+                <button class="bg-principal p-2 rounded-default text-white" (click)="abrirModal('agregar')">Añadir entrenador</button>
         </div>
     </div>
+}
+
+
+@if (modal !== '' )
+{
+    @switch (modal) {
+        @case ('editar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+                <app-editar-entrenador></app-editar-entrenador>
+            </app-modal>
+        }
+        @case ('agregar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+                <app-agregar-entrenador></app-agregar-entrenador>
+            </app-modal>
+        }
+    }
 }
