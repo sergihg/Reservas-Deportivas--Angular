@@ -1,9 +1,16 @@
-<form class="p-default">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-default">
     <p class="text-subtitulo">Ingresa datos a modificar</p>
 
-    <label for="hora">Nombre del entrenador</label><br>
-    <input type="text" name="nombre" value="Nombre antiguo" class="mx-2 border border-principal/25 w-full" placeholder="El campo no puede estar vacío"><br>
-    <label for="cupos">Correo del entrenador</label><br>
+    <label for="nombre">Nombre del entrenador</label><br>
+    <input formControlName="nombre" type="text" name="nombre" value="Nombre antiguo" class="mx-2 border border-principal/25 w-full" placeholder="El campo no puede estar vacío"><br>
+    <label for="correo">Correo del entrenador</label><br>
     <p class="text-xs italic">*En caso de haber cambiado de correo</p>
-    <input type="email" name="nombre" value="correoantiguo@email.com" class="mx-2 border border-principal/25 w-full" placeholder="El campo no puede estar vacío"><br>
+    <input formControlName="correo" type="email" name="correo" value="correoantiguo@email.com" class="mx-2 border border-principal/25 w-full" placeholder="El campo no puede estar vacío"><br>
+    @if(!form.valid) {
+        <p class="text-red-500 italic">Llena todos los campos antes</p>
+    }
+    <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+        <button type="button" (click)="cancelar()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer">Cancelar</button>
+        <button type="submit" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+    </div>
 </form>

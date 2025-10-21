@@ -71,7 +71,7 @@
     @switch (modal) {
         @case ('cupos') {
             <app-modal (cerrarModal)="cerrarModal()">
-                <app-editar-cupos [horario]="horario()"></app-editar-cupos>
+                <app-editar-cupos [horario]="horario()" (cerrar)="cerrarModal()"></app-editar-cupos>
             </app-modal>
         }
         @case ('dias') {
@@ -81,12 +81,12 @@
         }
         @case ('nuevoEvento') {
             <app-modal (cerrarModal)="cerrarModal()">
-                <app-agregar-evento></app-agregar-evento>
+                <app-agregar-evento (cerrar)="cerrarModal()"></app-agregar-evento>
             </app-modal>
         }
         @case ('horario') {
             <app-modal (cerrarModal)="cerrarModal()">
-                <app-agregar-horario></app-agregar-horario>
+                <app-agregar-horario (cerrar)="cerrarModal()"></app-agregar-horario>
             </app-modal>
         }
     }

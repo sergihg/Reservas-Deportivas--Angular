@@ -24,12 +24,12 @@
     @switch (modal) {
         @case ('editar') {
             <app-modal (cerrarModal)="cerrarModal()">
-                <app-editar-deporte [deporte]="deporteSeleccionado"></app-editar-deporte>
+                <app-editar-deporte [deporte]="deporteSeleccionado" (cerrar)="cerrarModal()"></app-editar-deporte>
             </app-modal>
         }
         @case ('agregar') {
             <app-modal (cerrarModal)="cerrarModal()">
-                <app-agregar-deporte></app-agregar-deporte>
+                <app-agregar-deporte (cerrar)="cerrarModal()"></app-agregar-deporte>
             </app-modal>
         }
     }

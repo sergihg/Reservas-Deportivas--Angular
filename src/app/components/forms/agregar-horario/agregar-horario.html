@@ -1,11 +1,11 @@
-<form class="p-default">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-default">
     <p class="text-subtitulo">Completa los detalles del horario</p>
 
 
     <label for="hora">Hora</label>
-    <input type="time" name="hora"><br>
+    <input formControlName="hora" type="time" name="hora"><br>
     <label for="cupos">Cupos</label>
-    <input type="number" name="hora" class="mx-2 border border-principal/25">
+    <input formControlName="cupos" type="number" name="cupos" class="mx-2 border border-principal/25">
     
     <div class="grid grid-cols-5 m-2">
         <label class="col">Martes</label>
@@ -18,5 +18,13 @@
         <input name="dias[]" type="checkbox" value=3 class="col">
         <input name="dias[]" type="checkbox" value=4 class="col">
         <input name="dias[]" type="checkbox" value=5 class="col">
+    </div>
+    
+    @if(!form.valid) {
+        <p class="text-red-500 italic">Llena todos los campos antes</p>
+    }
+    <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+        <button type="button" (click)="cancelar()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer">Cancelar</button>
+        <button type="submit" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
     </div>
 </form>
