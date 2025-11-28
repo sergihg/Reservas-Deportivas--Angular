@@ -3,6 +3,7 @@ import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../interfaces/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { User } from '../interfaces/user';
 export class AuthService {
 
   private http = inject(HttpClient);
-  private api = 'http://localhost:8081';
+  private api = environment.apiUrl;
 
   private _user: WritableSignal<User> = signal({name:'',email:'',role:'',_id:''});
   user = this._user.asReadonly();

@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Evento } from '../interfaces/evento';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
   private http = inject(HttpClient);
-  private api = 'http://localhost:8081/eventos/';
+  private api = environment.apiUrl + 'eventos/';
 
   private _eventos: WritableSignal<Evento[]> = signal([]);
   eventos = this._eventos.asReadonly();

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Deporte } from '../interfaces/deporte';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Deporte } from '../interfaces/deporte';
 export class DeporteService {
   private http = inject(HttpClient);
   private _deportes: WritableSignal<Deporte[]> = signal([]);
-  private api = 'http://localhost:8081/deportes/';
+  private api = environment.apiUrl+'deportes/';
 
   deportes = this._deportes.asReadonly();
 

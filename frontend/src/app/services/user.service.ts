@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { User } from '../interfaces/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private http = inject(HttpClient);
-  private api = 'http://localhost:8081/users/';
+  private api = environment.apiUrl +'users/';
   private _users: WritableSignal<User[]> = signal([]);
   users = this._users.asReadonly();
 

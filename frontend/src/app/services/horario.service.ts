@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Horario } from '../interfaces/horario';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Horario } from '../interfaces/horario';
 export class HorarioService {
   private http = inject(HttpClient);
   private _horarios: WritableSignal<Horario[]> = signal([]);
-  private api = 'http://localhost:8081/horarios/';
+  private api = environment.apiUrl+ 'horarios/';
 
   horarios = this._horarios.asReadonly();
 

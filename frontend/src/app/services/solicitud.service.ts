@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Solicitud } from '../interfaces/solicitud';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudService {
   private http = inject(HttpClient);
-  private api = 'http://localhost:8081/solicitudes/';
+  private api = environment.apiUrl +'solicitudes/';
+  
   private _solicitudes: WritableSignal<Solicitud[]> = signal([]);
   solicitudes = this._solicitudes.asReadonly();
 
