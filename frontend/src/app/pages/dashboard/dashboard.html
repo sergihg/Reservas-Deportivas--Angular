@@ -1,0 +1,24 @@
+@if (user().role !== 'gerencia'){
+
+    <p class="titulo">Actividades de hoy</p>
+    <p class="text-subtitulo">Deportes hoy</p>
+    <ul>
+        @for (hora of horarios(); track hora)
+        {
+            <li>{{hora.time }} - {{hora.sport?.name}}</li>
+        } @empty {
+            <li class="text-principal/50">No tienes deporte hoy</li>
+        }
+    </ul>
+    <p class="text-subtitulo">Eventos proximos</p>
+    <ul>
+        @for (evento of eventos(); track evento)
+        {
+            <li>{{evento.date  | date: 'dd-MM-yyyy'}} - {{evento.title}}</li>
+        }@empty {
+            <li class="text-principal/50">No hay eventos agendados aún</li>
+        }
+    </ul>
+}@else {
+    <p class="titulo">Bienvenido usuario de gerencia: {{user().name}}</p>
+}

@@ -1,0 +1,54 @@
+@if (deporte().name !== '')
+{
+    <div class="w-vw border p-5 rounded-default my-4">
+        <p class="text-subtitulo">Entrenadores de {{deporte().name}}</p>
+
+            @for (entrenador of deporte().entrenadores; track entrenador)
+            {
+                <div class="flex justify-between w-full border rounded-default p-default my-2">
+                    <p>{{entrenador.name}}</p>
+                    <div>
+                        <button class="cursor-pointer bg-principal hover:bg-principal/50 rounded-default text-white p-2" (click)="abrirModal('editar'); selectEntrenador(entrenador)">
+                                Editar datos del entrenador
+                        </button>
+                        <button href='' class="text-white bg-red-700 hover:bg-red-700/50 w-fit mx-3 p-2 rounded-default cursor-pointer" (click)="abrirModal('eliminar'); entrenadorID=entrenador._id??''">
+                            - dar de baja entrenador
+                        </button>
+                    </div>
+                </div>
+            } @empty {
+                <p class="text-center text-2xl text-principal/50 py-5">Todavía no hay entrenadores para esta académia</p>
+            }
+        <div class="flex my-2">
+                <button class="bg-principal p-2 rounded-default text-white" (click)="abrirModal('agregar')">Añadir entrenador</button>
+        </div>
+    </div>
+}
+
+
+@if (modal !== '' )
+{
+    @switch (modal) {
+        @case ('editar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+                <app-editar-usuario [user]="selected" (cerrar)="cerrarModal()"></app-editar-usuario>
+            </app-modal>
+        }
+        @case ('agregar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+                <app-agregar-entrenador  (cerrar)="cerrarModal()" [sport]="deporte().name"></app-agregar-entrenador>
+            </app-modal>
+        }
+        @case ('eliminar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+            ¿Seguro que quieres dar de baja este horario?
+            <p class="text-red-500 italic text-xm">Se eliminará los horarios y eventos relacionados</p>
+            <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+                <button type="button" (click)="cerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer text-principal">Cancelar</button>
+                <button type="button" (click)="onConfirm()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+            </div>
+            </app-modal>
+        }
+        @default{}
+    }
+}

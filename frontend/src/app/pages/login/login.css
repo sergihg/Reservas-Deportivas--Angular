@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    background-color: white;
+    padding: var(--spacing-default);
+    border-radius: var(--radius-default);
+}

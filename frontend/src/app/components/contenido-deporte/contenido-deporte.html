@@ -1,0 +1,67 @@
+@if (deporte().name !== '')
+{
+    <div class="w-vw border p-5 rounded-default my-4 relative">
+        @if(!socio()) {
+            <button class="text-white bg-red-700 w-fit absolute right-0 mx-3 p-2 rounded-default cursor-pointer" (click)="abrirModal('eliminar');selectedID = deporte()._id">
+                - Eliminar deporte
+            </button>
+        }
+        <p class="text-subtitulo">Descripción del deporte: {{deporte().name}}</p>
+        <p>
+            {{deporte().description}}
+        </p>
+
+        @if (socio())
+        {
+            <p class="text-subtitulo mt-5"> Horarios del deporte</p>
+
+            <div class="grid grid-cols-4">
+                @for (horario of horarios(); track horario)
+                {
+                    <p>{{horario.time}}</p>
+                    <p>{{horario.trainer?.name??''}}</p>
+                    <p>{{days(horario.days)}}</p>
+                    <div class="flex flex-wrap justify-between p-0.5">
+                        <p>{{horario.enrolled?.length ?? 0}} /{{horario.spots}}</p>
+                        <button class="rounded text-white p-2" (click)="abrirModal('inscribir');selectedID = horario._id??''"
+                        [ngClass]="isEnrolled(horario) ? 'bg-secundario/50' : 'bg-principal hover:bg-principal/50 cursor-pointer'"
+                        [disabled]="isEnrolled(horario)"
+                        >
+                        @if(isEnrolled(horario)) {
+                            Ya estás inscrito a este horario
+                        }@else{
+                            Inscribirse al deporte
+
+                        }
+                        </button>
+                    </div>
+                } @empty {
+                    <p class="col-span-3 text-center text-2xl text-principal/50 py-5">Todavía no hay entrenadores para esta academia</p>
+                }
+            </div>
+            
+        }
+    </div>
+}
+@switch (modal)
+{
+    @case ('inscribir') {
+        <app-modal (cerrarModal)="cerrarModal()">
+            ¿Seguro que quieres inscribir este horario?
+            <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+                <button type="button" (click)="cerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer text-principal">Cancelar</button>
+                <button type="button" (click)="onConfirm()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+            </div>
+        </app-modal>
+    }
+    @case ('eliminar') {
+        <app-modal (cerrarModal)="cerrarModal()">
+            ¿Seguro que quieres inscribir este horario?
+            <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+                <button type="button" (click)="cerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer text-principal">Cancelar</button>
+                <button type="button" (click)="onConfirm()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+            </div>
+        </app-modal>
+    }
+    @default{}
+}

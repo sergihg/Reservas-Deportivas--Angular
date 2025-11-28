@@ -1,0 +1,62 @@
+<p class="titulo">Lista de socios</p>
+
+<div class="w-[75vw] border p-5 rounded-default my-4">
+
+    <table class="table-auto w-full">
+        <thead>
+            <th class="text-lg font-semibold">Nombre</th>
+            <th class="text-lg font-semibold">Email</th>
+            <th class="text-lg font-semibold">Clave</th>
+            <th class="text-lg font-semibold">Acciones</th>
+        </thead>
+
+        <tbody>
+            @for (socio of socios(); track socio)
+            {
+                <tr>
+                    <td>{{socio.name}}</td>
+                    <td>{{socio.email}}</td>
+                    <td>{{socio.code}}</td>
+                    <td class="justify-center py-2 text-center">
+                        <button class="cursor-pointer bg-principal hover:bg-principal/50 rounded-default text-white p-2" (click)="abrirModal('editar'); selected=socio">
+                            Editar usuario
+                        </button>
+                        <button class="text-white bg-red-700 hover:bg-red-700/50 w-fit p-2 rounded-default cursor-pointer"(click)="abrirModal('eliminar'); selected=socio">
+                            Eliminar Usuario
+                        </button>
+                    </td>
+                </tr>
+            } @empty {
+                <tr>
+                    <p class="text-center text-2xl text-principal/50 py-5">Todavía no hay socios</p>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+        <div class="flex my-2">
+                <button class="bg-principal p-2 rounded-default text-white" (click)="abrirModal('agregar')">Añadir socio</button>
+        </div>
+@switch (modal) {
+    @case ('editar') {
+        <app-modal (cerrarModal)="cerrarModal()">
+            <app-editar-usuario [user]="selected" (cerrar)="cerrarModal()"></app-editar-usuario>
+        </app-modal>
+    }
+    @case ('agregar') {
+        <app-modal (cerrarModal)="cerrarModal()">
+            <app-agregar-socio (cerrar)="cerrarModal()"></app-agregar-socio>
+        </app-modal>
+    }
+    @case ('eliminar') {
+        <app-modal (cerrarModal)="cerrarModal()">
+        ¿Seguro que quieres eliminar a este usuario?
+        <p class="text-red-500 italic text-xm">Se eliminará los horarios inscritos</p>
+        <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+            <button type="button" (click)="cerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer text-principal">Cancelar</button>
+            <button type="button" (click)="deleteSocio()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+        </div>
+        </app-modal>
+    }
+    @default{}
+}

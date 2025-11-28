@@ -1,0 +1,19 @@
+:host {
+    width: 100%;
+}
+
+.cell {
+    min-height: 10vh;
+    border-color: var(--color-principal);
+    border-width: 2px;
+  border-collapse: collapse;
+  display: table-cell;
+  box-sizing: border-box;
+  padding: 5px
+}
+
+.header {
+    text-align: center;
+    border-width: 2px;
+    font-weight: 700;
+}

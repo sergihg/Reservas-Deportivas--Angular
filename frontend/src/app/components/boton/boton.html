@@ -1,0 +1,6 @@
+<div class="mx-auto h-full w-[130px] pb-2 text-center" routerLinkActive="border-b-2">
+    <a routerLink={{direccion()}} class="flex items-center justify-center hover:bg-white/10 p-default rounded-default gap-default w-full h-full" routerLinkActive="bg-white/10">
+        <app-icon [type]="icon()"></app-icon>
+        <ng-content/>
+    </a>
+</div>

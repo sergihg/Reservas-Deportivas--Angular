@@ -1,0 +1,29 @@
+<p class="titulo">Mis actividades del mes</p>
+
+<div class="grid grid-cols-7 border-2">
+    <p class="header bg-principal/20">Lunes</p>
+    <p class="header bg-principal/20">Martes</p>
+    <p class="header bg-principal/20">Miércoles</p>
+    <p class="header bg-principal/20">Jueves</p>
+    <p class="header bg-principal/20">Viernes</p>
+    <p class="header bg-principal/20">Sábado</p>
+    <p class="header bg-principal/20">Domingo</p>
+
+    @for(empty of firstEmptyDays; track empty) {
+        <div class=" cell bg-principal/10"></div>
+    }
+
+    @for(day of days; track day) {
+        <div class="cell" [ngClass]="isToday(day) ? 'bg-fuchsia-200':''">
+            <p>{{day}}</p>
+            <div class="bg-secundario/50 mx-2">{{horariosToday(day)}}</div>
+            <div class="bg-green-600/50 mx-2">{{eventosToday(day)}}</div>
+
+        </div>
+    }
+
+    @for (empty of lastEmptyDays; track empty) {
+        <div class=" cell bg-principal/10"></div>
+    }
+
+</div>

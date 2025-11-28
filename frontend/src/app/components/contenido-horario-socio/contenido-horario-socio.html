@@ -1,0 +1,52 @@
+@if (horario().time !== '')
+{
+    <div class="border p-5 rounded-default my-4">
+        <div class="grid grid-cols-3 relative">
+            <button class="text-white bg-red-700 hover:bg-red-700/50 cursor-pointer w-fit absolute right-0 mx-3 text-sm p-2 rounded font-bold" (click)="abrirModal(horario()._id??'')">
+                - dar de baja horario
+            </button>
+            <div class="col text-2xl font-semibold">Deporte</div>
+            <div class="col text-2xl font-semibold">Hora</div>
+            <div class="col text-2xl font-semibold">Entrenador</div>
+        
+            <div class="col">{{ deporte().name }}</div>
+            <div class="col">{{ horario().time }}</div>
+            <div class="col">{{ horario().trainer?.name ?? ''}}</div>
+        </div>
+
+        <div class="my-5">
+            <p class="text-2xl">Días del horario</p>
+            <app-calendario-semanal [dias]="horario().days"></app-calendario-semanal>
+        </div>
+        <div class="flex justify-end">
+            <a href='/calendario' class="hover:bg-principal/25 rounded-default p-2 cursor-pointer">
+                Ver calendario completo
+            </a>
+        </div>
+
+        <div class="col-span-2">
+            <p>Próximos eventos agendados</p>
+                <table>
+                    @for (evento of eventos(); track evento) {
+                        <tr class="border-b-2 border-main-color">
+                            <td class = "border-r border-principal/80">{{evento.date | date: 'dd-MM-yyyy'}}</td>
+                            <td>{{evento.title}}</td>
+                        </tr>
+                    } @empty {
+                        <p class="text-principal/50">No hay eventos agendados aún</p>
+                    }
+                </table>
+            
+        </div>
+    </div>
+    @if (modal)
+    {
+        <app-modal (cerrarModal)="cerrarModal()">
+            ¿Seguro que quieres dar de baja este horario?
+            <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+                <button type="button" (click)="cerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer text-principal">Cancelar</button>
+                <button type="button" (click)="onConfirm()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+            </div>
+        </app-modal>
+    }
+}

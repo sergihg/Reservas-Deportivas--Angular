@@ -1,0 +1,20 @@
+<div class="mx-auto h-full w-fit pb-2 text-center">
+    <button type="button" class="flex items-center justify-center  p-default rounded-default gap-default w-full h-full" (click)="abrirModal()"
+    [ngClass]="modal ? 'bg-red-700/20' : 'bg-black/20 hover:bg-red-700/80'">
+        {{name()}}
+        <app-icon [type]="'logout'"></app-icon>
+    </button>
+</div>
+
+
+
+@if (modal)
+{
+    <app-modal (cerrarModal)="cerrarModal()">
+        <p class="text-principal">¿Seguro que quieres cerrar sesión?</p>
+        <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+            <button type="button" (click)="cerrarModal()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer text-principal">Cancelar</button>
+            <button type="button" (click)="logout()" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+        </div>
+    </app-modal>
+}

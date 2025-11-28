@@ -1,0 +1,32 @@
+<div class="w-full bg-principal text-white py-5 relative">
+    <div class="flex justify-center">
+        <img class="logo mb-5" src="logo.png" alt="">
+    </div>
+    @if(logged()) {
+        <div class="flex space-x-10 px-20 w-fit mx-auto gap-10">
+            <app-boton [icon]='"home"'   [direccion]="'/dashboard'">Dashboard</app-boton>
+            @switch (user().role) {
+                @case ('gerencia') {
+                    <app-boton [icon]='"sport"' [direccion]="'/gerencia/deportes'">Deportes</app-boton>
+                    <app-boton [icon]='"coach"' [direccion]="'/gerencia/entrenadores'">Entrenadores</app-boton>
+                    <app-boton [icon]='"socio"' [direccion]="'/gerencia/socios'">Socios</app-boton>
+                    <app-boton [icon]='"calendar"' [direccion]="'/gerencia/solicitudes'">Solicitudes</app-boton>
+                }
+                @case ('entrenador') {
+                    <app-boton [icon]='"schedule"'  [direccion]="'/entrenador/horarios'">Horarios</app-boton>
+                }
+                @case ('socio') {
+                    <app-boton [icon]='"schedule"'  [direccion]="'/socio/horarios'">Horarios</app-boton>
+                    <app-boton [icon]='"sport"'  [direccion]="'/socio/deportes'">Deportes</app-boton>
+                }
+            }
+            @if (user().role === 'socio' || user().role === 'entrenador') {
+                <app-boton [icon]='"calendar"'  [direccion]="'/calendario'">Mi calendario</app-boton>
+            }
+        </div>
+        <div class="absolute right-0 bottom-0 pr-10 pb-5">
+            <app-dropdown [name]="user().name ?? ''">Nombre de Usuario</app-dropdown>
+        </div>
+    }
+</div>
+<div class="bg-secundario h-3 w-full"></div>

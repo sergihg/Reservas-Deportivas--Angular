@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-default">
+    <p class="text-subtitulo">Ingresa los días del horario</p>
+    
+    <div class="grid grid-cols-5 m-2">
+        <label class="col">Martes</label>
+        <label class="col">Miercoles</label>
+        <label class="col">Jueves</label>
+        <label class="col">Viernes</label>
+        <label class="col">Sábado</label>
+        <input formControlName="day1" name="day1" type="checkbox" value=1 class="col">
+        <input formControlName="day2" name="day2" type="checkbox" value=2 class="col">
+        <input formControlName="day3" name="day3" type="checkbox" value=3 class="col">
+        <input formControlName="day4" name="day4" type="checkbox" value=4 class="col">
+        <input formControlName="day5" name="day5" type="checkbox" value=5 class="col">
+    </div>
+    @if(!form.valid) {
+        <p class="text-red-500 italic">Llena todos los campos antes</p>
+    }
+    <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+        <button type="button" (click)="cancelar()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer">Cancelar</button>
+        <button type="submit" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+    </div>
+</form>

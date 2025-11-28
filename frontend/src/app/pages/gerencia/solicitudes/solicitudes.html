@@ -1,0 +1,38 @@
+<p class="titulo">Solicitudes de Registro</p>
+
+<div class="w-[75vw] border p-5 rounded-default my-4">
+
+    <div class="table-auto w-full">
+        <thead>
+            <th class="text-lg font-semibold">Nombre</th>
+            <th class="text-lg font-semibold">Email</th>
+            <th class="text-lg font-semibold">Rol</th>
+            <th class="text-lg font-semibold">Clave / Deporte</th>
+            <th class="text-lg font-semibold">Acciones</th>
+        </thead>
+
+        <tbody>
+            @for (solicitud of solicitudes(); track solicitud)
+            {
+                <tr>
+                    <td>{{solicitud.name}}</td>
+                    <td>{{solicitud.email}}</td>
+                    <td>{{solicitud.role}}</td>
+                    <td>{{solicitud.code??solicitud.sport?.name}}</td>
+                    <td class="justify-center py-2">
+                        <button class="cursor-pointer bg-principal hover:bg-principal/50 rounded-default text-white p-2" (click)="accept(solicitud._id??'')">
+                            Aceptar Solicitud
+                        </button>
+                        <button class="text-white bg-red-700 hover:bg-red-700/50 w-fit p-2 rounded-default cursor-pointer"(click)="reject(solicitud._id??'')">
+                            Rechazar Solicitud
+                        </button>
+                    </td>
+                </tr>
+            } @empty {
+                <tr>
+                    <p class="text-center text-2xl text-principal/50 py-5">Todavía no hay solicitudes</p>
+                </tr>
+            }
+        </tbody>
+    </div>
+</div>

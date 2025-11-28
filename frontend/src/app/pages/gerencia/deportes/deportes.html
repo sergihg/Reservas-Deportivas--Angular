@@ -1,0 +1,36 @@
+<p class="titulo">Todos los deportes</p>
+
+<div class="flex flex-wrap py-2">
+    @for (deporte of deportes(); track deporte) {
+        <app-ficha  (seleccionado)="seleccionar($event)" [texto]="deporte.name" [seleccionActual]="deporteSeleccionado.name"></app-ficha>
+    }
+</div>
+<hr class="border-2 text-secundario">
+
+<app-contenido-deporte [deporte]="deporteSeleccionado" (delete)="delete($event)"></app-contenido-deporte>
+@if (deporteSeleccionado.name !== '') {
+        <div class="flex justify-end my-2">
+        <button class="bg-principal p-2 rounded-default text-white" (click)="abrirModal('editar')">Editar deporte</button>
+    </div>
+    <hr class="border-2 text-secundario">
+}
+<div class="flex justify-end my-2" (click)="abrirModal('agregar')">
+        <button class="bg-principal p-2 rounded-default text-white">Agregar deporte</button>
+</div>
+
+
+@if (modal !== '' )
+{
+    @switch (modal) {
+        @case ('editar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+                <app-editar-deporte [deporte]="deporteSeleccionado" (cerrar)="cerrarModal()"></app-editar-deporte>
+            </app-modal>
+        }
+        @case ('agregar') {
+            <app-modal (cerrarModal)="cerrarModal()">
+                <app-agregar-deporte (cerrar)="cerrarModal()"></app-agregar-deporte>
+            </app-modal>
+        }
+    }
+}

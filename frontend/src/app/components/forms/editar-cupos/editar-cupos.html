@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-default">
+    <p class="text-subtitulo">Ingresa datos a modificar</p>
+
+    <label for="time">Nueva hora: </label>
+    <input formControlName="time" type="time" [ngModel]="horario().time" name="time" class="border"><br>
+    <label for="spots">Nuevos cupos: </label>
+    <input formControlName="spots" type="number" name="spots" min="5" max="30" [ngModel]="horario().spots" class="mx-2 border border-principal/25">
+    
+    @if(!form.valid) {
+        <p class="text-red-500 italic">Llena todos los campos antes</p>
+    }
+    <div class="flex flex-wrap gap-2 justify-center mt-5 ml-5 mr-5">
+        <button type="button" (click)="cancelar()" class="rounded-default p-default hover:bg-principal/20 cursor-pointer">Cancelar</button>
+        <button type="submit" class="rounded-default bg-principal text-white p-default hover:bg-principal/80 cursor-pointer">Confirmar</button>
+    </div>
+</form>

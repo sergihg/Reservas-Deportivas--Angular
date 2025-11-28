@@ -1,0 +1,10 @@
+<p class="titulo">Todos los deportes disponibles</p>
+
+<div class="flex flex-wrap py-2">
+    @for (deporte of deportes(); track deporte) {
+        <app-ficha  (seleccionado)="seleccionar($event)" [texto]="deporte.name" [seleccionActual]="deporteSeleccionado.name"></app-ficha>
+    }
+</div>
+<hr class="border-2 text-secundario">
+
+<app-contenido-deporte [deporte]="deporteSeleccionado" [horarios]="horarios()" [user]="user()" [socio]="true" (enroll)="enroll($event)"></app-contenido-deporte>

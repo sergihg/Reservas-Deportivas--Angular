@@ -1,0 +1,4 @@
+p {
+    padding-left: var(--spacing-default);
+    padding-right: var(--spacing-default);
+}
